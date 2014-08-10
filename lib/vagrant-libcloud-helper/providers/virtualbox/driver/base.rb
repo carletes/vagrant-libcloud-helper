@@ -5,8 +5,14 @@ module VagrantPlugins
 
         def allocate_sata_ports
           controller = get_sata_controller_name
-          if !controller.nil?
-            execute("storagectl", @uuid, "--name", controller, "--portcount", "30")
+          portcount = 30
+          if controller.nil?
+            controller = "SATA Controller"
+            @logger.info("****** Creating SATA controller '#{controller}' with #{portcount} ports")
+            execute("storagectl", @uuid, "--name", controller, "--portcount", portcount.to_s, "--add", "sata")
+          else
+            @logger.info("****** Allocating #{portcount} ports in  SATA controller '#{controller}'")
+            execute("storagectl", @uuid, "--name", controller, "--portcount", portcount.to_s)
           end
         end
 
