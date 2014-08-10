@@ -11,8 +11,10 @@ module VagrantPlugins
         def call(env)
           return @app.call(env) if @machine.state.id != :poweroff && [:up].include?(env[:machine_action])
 
-          env[:ui].info "********* Allocating SATA ports"
-          env[:machine].provider.driver.allocate_sata_ports
+          if env[:machine].config.libcloud_helper.allocate_sata_ports
+            env[:ui].info "********* Allocating SATA ports"
+            env[:machine].provider.driver.allocate_sata_ports
+          end
 
           @app.call(env)
         end
