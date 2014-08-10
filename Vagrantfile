@@ -4,7 +4,7 @@
 Vagrant.configure("2") do |config|
 
   # This plugin must be explicitly enabled. Do it like this:
-  config.libcloud_helper.enabled = true
+  config.libcloud_helper.allocate_sata_ports = true
 
   config.vm.define "precise64" do |n|
     n.vm.hostname = "precise64"

@@ -2,16 +2,16 @@ module VagrantPlugins
   module LibcloudHelper
     class Config < Vagrant.plugin("2", :config)
 
-      attr_accessor :enabled
+      attr_accessor :allocate_sata_ports
 
-      alias_method :enabled?, :enabled
+      alias_method :allocate_sata_ports?, :allocate_sata_ports
 
       def initialize
-        @enabled = UNSET_VALUE
+        @allocate_sata_ports = UNSET_VALUE
       end
 
       def finalize!
-        @enabled = false if @enabled == UNSET_VALUE
+        @allocate_sata_ports = false if @allocate_sata_ports == UNSET_VALUE
       end
 
       def validate(machine)
