@@ -46,3 +46,7 @@ This plugin has been tested under 64-bit Linux with:
 
 * Vagrant 1.6.3
 * VirtualBox 4.3.14
+
+## Credits
+Most of the code here was taken from the
+[vagrant-persistent-storage](https://github.com/kusnier/vagrant-persistent-storage]) plugin.
