@@ -11,7 +11,11 @@ module VagrantPlugins
       end
 
       def finalize!
-        @allocate_sata_ports = false if @allocate_sata_ports == UNSET_VALUE
+        if @allocate_sata_ports == UNSET_VALUE
+          @allocate_sata_ports = 0
+        else
+          @allocate_sata_ports = [@allocate_sata_ports, 30].min
+        end
       end
 
       def validate(machine)

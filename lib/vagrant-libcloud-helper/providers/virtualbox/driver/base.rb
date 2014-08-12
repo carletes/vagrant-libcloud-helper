@@ -3,9 +3,8 @@ module VagrantPlugins
     module Driver
       class Base
 
-        def allocate_sata_ports
+        def allocate_sata_ports(portcount)
           controller = get_sata_controller_name
-          portcount = 30
           if controller.nil?
             controller = "SATA Controller"
             @logger.info("Creating SATA controller '#{controller}' with #{portcount} ports")
